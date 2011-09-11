@@ -6,7 +6,7 @@ body {
 	font-family: 'Oswald', arial, serif;
 	background-color: white;
 	color: white;
-	font-size: 2em;
+	font-size: 1.5em;
 	background: #1C1C1C;
 }
 
@@ -38,10 +38,8 @@ h1 {
 h2 {
 	color: #FAE50B;
 	margin: 1em 0 0 0;
-	font-size: 1.25em;
+	font-size: 1.5;
 	text-align: center;
-}
-ul {
 }
 q, p {
 	margin: 2em 0em 0em 5em;
@@ -65,9 +63,18 @@ video {
 	left: 460px;
 	font-size: 100px;
 	color: white;
- 
 }
-li {list-style-type: circle}
+
+.img-container { 
+	text-align:center;
+	margin:auto;
+	padding:1em 0 0 0;
+}
+
+li {
+	list-style-type: disc;
+	padding:0.2em 0em 0.1em 0em;
+}
  
 * { margin: 0; padding: 0; }
 details {display: none;}
