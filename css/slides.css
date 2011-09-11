@@ -10,7 +10,7 @@ body {
 	background: #1C1C1C;
 }
 
-.highlight, ul, ol, p, .slide-body {
+code, .highlight, ul, ol, p, .slide-body {
 	padding: 1em 0 0 2em;
 }
  
@@ -41,7 +41,7 @@ h2 {
 	font-size: 1.5;
 	text-align: center;
 }
-q, p {
+q {
 	margin: 2em 0em 0em 5em;
 }
 q:after {content: ""}
