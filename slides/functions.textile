@@ -9,8 +9,25 @@ title: Functions
 
 <section>
 h2.  exercises
-* bar
-* baz
+* fib (recursive)
+* fizzbuzz to function, function w/ kw args
+* make_adder function using scope / closure and functions as first class citizens
+* counties list comprehension
+
+{% highlight python %}
+>>> def make_adder(n):
+...  def add(x):
+...   return n + x
+...  return add
+... 
+>>> add_three = make_adder(3)
+>>> add_twenty = make_adder(20)
+>>> add_three(5)
+8
+>>> add_twenty(5)
+25
+>>> 
+{% endhighlight %}
 
 <details>
 * foo

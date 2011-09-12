@@ -2,6 +2,27 @@
 layout: slides
 title: Intro
 ---
+<section>
+    <h1>Syntax and Control Structures</h1>
+    <footer>Intro to Python</footer>
+</section>
+
+<section>
+h2.  exercises
+* fizzbuzz using range, foreach, if else
+* sum #'s using foreach, then using arg, then maybe file io?, then file, then exception handling
+* try using httplib and json for non reg twitter api http://api.twitter.com/1/statuses/public_timeline.json?count=3&include_entities=true
+* twitter search http://search.twitter.com/search.json?q=%40twitterapi
+* https://dev.twitter.com/docs/using-search
+
+{% highlight python %}
+>>> import urllib
+>>> import json
+>>> f = urllib.urlopen('http://search.twitter.com/search.json?q=%40python')
+>>> d = json.loads(f.read())
+>>> d['results'][0]['text']
+{% endhighlight %}
+
 	{% highlight python %}
 def foo():
 	bar = 0
