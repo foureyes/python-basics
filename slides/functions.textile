@@ -1,0 +1,20 @@
+---
+layout: slides
+title: Functions
+---
+<section>
+    <h1>Functions</h1>
+    <footer>Intro to Python</footer>
+</section>
+
+<section>
+h2.  exercises
+* bar
+* baz
+
+<details>
+* foo
+* bar
+
+</details>
+</section>
