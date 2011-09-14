@@ -8,6 +8,20 @@ title: Intro
 </section>
 
 <section>
+	
+* 
+
+<details>
+* foo
+* bar
+
+• Readability
+• Data storage in Python
+• Python’s basic data types
+• Expression syntax and semantics
+</section>
+
+<section>
 h2.  exercises
 * fizzbuzz using range, foreach, if else
 * sum #'s using foreach, then using arg, then maybe file io?, then file, then exception handling
@@ -30,3 +44,9 @@ def foo():
 	for k, v in d:
 		print "%s" % k
 	{% endhighlight %}
+<details>
+* foo
+* bar
+
+</details>
+</section>
