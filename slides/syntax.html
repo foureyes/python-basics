@@ -80,24 +80,25 @@ if True: # waiting for input shows an error
 </section>
 
 <section>
-<h2>Some mild introspection</h2>
+<h2>Some mild introspection... and others</h2>
 <ul>
 	<li>help</li>
 	<li>dir</li>
 	<li>type</li>
+	<li>import</li>
+	<li>print</li>
 </ul>
 <details>
 <pre>
 help() # no params gives you interactive help.  "quit" or ^D to quit.
 keywords, ^D
-help([1, 2, 3]), import sys, help(sys) #... by the way, brackets denote a list!
-dir(sys), dir(""), dir([])
+help([1, 2, 3]), import sys, help(sys) #... by the way, brackets denotes a list!
+import sys, dir(sys), dir(""), dir([]) # import brings in a module... (which is just a file with code)
 type(sys), type(5), li = [], type(li), dir(li), type(li.append),
  help(li.append), li, li.append('foo'), li
 </pre>
 </details>
 </section>
-
 
 <section>
 <h2>Syntax</h2>
@@ -162,6 +163,8 @@ type(sys), type(5), li = [], type(li), dir(li), type(li.append),
 <details>
 <ul>
 	<li>(demo)+ - *  / all work as you'd expect.  whitespace separating tokens is not significant.</li>
+	<li>(demo) also % (modulo), 5**2 for exponents</li>
+	<li>(demo) operations on two integers yield integers 5 / 2</li>
 	<li>(demo) use = to assign variables</li>
 	<li>(demo) a = b = c = 2</li>
 	<li>(demo) (a, b, c) = (1, 2, 3) ... these are actually tuples, we'll talk about these later</li>
@@ -474,16 +477,17 @@ fizzbuzz
 
 <section>
 <h2>More fizz</h2>
-<p>
-It's a silly interview and code golf question from CodingHorror and http://golf.shinh.org/p.rb?FizzBuzz ...by the end, your output should look the same.
-</p>
+<ul>
+<li>It's a silly interview and code golf question from CodingHorror and http://golf.shinh.org/p.rb?FizzBuzz </li>
+<li>Your output should look the same as the previous slide.</li>
+</ul>
 <details>
 </details>
 </section>
 
 <section>
 <h2>One way to do it:</h2>
-{% highlight console %}
+{% highlight python %}
 for n in range(1,100):
 	if n % 3 == 0 and n % 5 == 0:
 		print "fizzbuzz"
@@ -504,10 +508,7 @@ for n in range(1,100):
 <section>
 <h2>Data types</h2>
 <ul>
-	<li>References</li>
-	<li>Mutability</li>
-</ul>
-<ul>
+	<li>Mutability (and References)</li>
 	<li>Numbers</li>
 	<li>Booleans</li>
  	<li>Strings</li>
@@ -517,6 +518,41 @@ for n in range(1,100):
  	<li>Dictionaries</li>
  	<li>Files</li>
 </ul>
+<details>
+</details>
+</section>
+
+<section>
+<h2>Accept the things you cannot change...</h2>
+<p>Some types in Python are not mutable! (Remember, values have types).</p>
+{% highlight pycon %}
+>>> a
+'foo'
+>>> b
+'foo'
+>>> a + " bar"
+'foo bar'
+>>> a
+'foo'
+>>> b
+'foo'
+>>> a = a + " bar"
+>>> a
+'foo bar'
+{% endhighlight %}
+<p>Compare that to what happened with lists</p>
+{% highlight pycon %}
+>>> a = [1, 2, 3]
+>>> b = a
+>>> a
+[1, 2, 3]
+>>> b
+[1, 2, 3]
+>>> a.append(4)
+>>> a
+[1, 2, 3, 4]
+>>> b # what will the value be?
+{% endhighlight %}
 <details>
 </details>
 </section>
@@ -559,9 +595,6 @@ And and or
 </p>
 <p>
 ternary operator
-</p>
-<p>
-no case statement
 </p>
 <details>
 </details>
