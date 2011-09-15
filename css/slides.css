@@ -13,6 +13,10 @@ body {
 .highlight, ul, ol, p, .slide-body {
 	padding: 1em 0 0 2em;
 }
+
+.highlight {
+	padding-bottom: 0.5em
+}
  
 /* Transition effect */
 section {

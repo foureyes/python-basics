@@ -231,7 +231,7 @@ b   ----------->   ["a", ...."strings"]
 </section>
 
 <section>
-<h2>Which looks like... crude ASCII art...</h2>
+<h2>Queue crude ASCII art</h2>
 {% highlight python %}
 a = [1, 2, 3]
 b = a
@@ -262,7 +262,6 @@ b --->[1, 2, 3]
 	<li>Conditionals</li>
 	<li>Loops</li>
 	<li>Exceptions</li>
-	<li>Keywords</li>
 </ul>
 <details>
 </details>
@@ -297,19 +296,21 @@ b --->[1, 2, 3]
 <h2>Loops</h2>
 <ul>	
 	<li>For loops iterate over items in a sequence (such as lists or chars in a string)</li>
-	<li>Construct is not for arithmetic loop progression</li>
+	<li>Not for arithmetic loop progression (well, maybe with some prodding)</li>
 </ul>
 {% highlight pycon %}
 >>> for i in [-1, 1, 1, 5]:
 ...  print i + 2
-... 
 {% endhighlight %}
 
 {% highlight pycon %}
->>> for k, v in {'name':'doughnut', 'flavor':'frosted with sprinkles'}.items():
+>>> for k, v in {'name':'doughnut', 
+...  'flavor':'frosted with sprinkles'}.items():
 ...  print "key = " + k + ", value = " + v
 {% endhighlight %}
-
+<ul>
+	<li>Just like every other while loop</li>
+</ul>
 {% highlight pycon %}
 >>> while(True):
 ...  print 'too.  many.  sprinkles.'
@@ -318,16 +319,41 @@ b --->[1, 2, 3]
 <ul>
 	<li>you can do multiple assignments for iterating over dictionaries</li>
 	<li>using range(len(li)) is one way to to iterate over indeces</li>
-	<li>yes, it prints quack</li>
+	<li>? what's it print; yes, it prints quack</li>
+	<li>? what's the output of other for loop</li>
+	<li>? what's the output of while loop</li>
 </ul>
 </details>
 </section>
 
-
 <section>
 <h2>Loopier</h2>
 <ul>	
-	<li>A closer look</li>
+	<li>Pass, break, and continue</li>
+</ul>
+{% highlight pycon %}
+>>> for i in range(5):
+...  pass 
+{% endhighlight %}
+<ul>
+	<li>else in a loop? only executes after loop terminates normally</li>
+</ul>
+{% highlight pycon %}
+>>> for i in range(5):
+...  print i
+... else:
+...  print "done"
+{% endhighlight %}
+<details>
+(demo) Pass doesn't do anything at all (use for loop)
+(demo) break and continue if necessary
+</details>
+</section>
+
+<section>
+<h2>Loopiest</h2>
+<ul>	
+	<li>A closer look (we're getting ahead of ourselves)</li>
 </ul>
 {% highlight pycon %}
 >>> {'foo':'bar', 'baz':'qux'}.items()
@@ -340,21 +366,80 @@ b --->[1, 2, 3]
 4, 5, 6
 7, 8, 9
 {% endhighlight %}
-<ul>	
-	<li>Break and continue</li>
-</ul>
-
 <details>
 (demo) mentioned items... what does that do?  dictionary to list of tuples
-(demo) break and continue if necessary
 </details>
 </section>
 
 <section>
-{% highlight pycon %}
-{% endhighlight %}
-<ul>
+<h2>Exceptions</h2>
+<ul>	
+	<li>Try-catch (with an IndexError)</li>
 </ul>
+{% highlight pycon %}
+>>> li = [1, 2]
+>>> try:
+...  print li[42]
+... except Exception, e:
+...  print 'Oh noez ' + str(e)
+... 
+Oh noez list index out of range
+{% endhighlight %}
+<ul>	
+	<li>Use raise to throw your own exception</li>
+</ul>
+{% highlight pycon %}
+>>> raise Exception("Estoy enfermo")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+Exception: Estoy enfermo
+>>> 
+{% endhighlight %}
+<details>
+	<ul>
+		<li>Catches specified exception(s), but Exception will catch all that are subclasses of it</li>
+		<li>Optional finally keyword at end has block that will always execute</li>
+		<li>Multiple excepts allowed for different code paths per exception type</li>
+		<li>Use as to bind exceptions to name, can have multiple excepit blocks</li>
+	</ul>
+</details>
+</section>
+
+<section>
+<h2>Catching 'em all (multiple exception types)</h2>
+{% highlight pycon %}
+>>> def raise_e(e):
+...  try:
+...   raise e
+...  except (NameError, IndexError) as e:
+...   print type(e)
+... 
+>>> raise_e(Exception)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in raise_e
+Exception
+{% endhighlight %}
+<ul>	
+</ul>
+<details>
+</details>
+</section>
+
+<section>
+<h2>A brief detour</h2>
+<ul>	
+	<li>Remember what range() does?</li>
+	<li>Remember how to iterate over a list?</li>
+</ul>
+<details>
+<ul>	
+	<li>range returns a list of integers</li>
+	<li>iterate over a list....</li>
+	<li>(demo) list of integers</li>
+	<li>(demo) iterating over list of integers</li>
+</ul>
+</details>
 </section>
 
 <section>
@@ -399,17 +484,6 @@ b --->[1, 2, 3]
 <details>
 </details>
 </section>
-
-<section>
-<h2>Assignment, Binding</h2>
-<ul>
-	<li>Assignment</li>
-	<li>Binding</li>
-</ul>
-<details>
-</details>
-</section>
-
 
 <section>
 <h2>Conventions and Documentation</h2>
