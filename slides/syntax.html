@@ -435,9 +435,68 @@ Exception
 <details>
 <ul>	
 	<li>range returns a list of integers</li>
-	<li>iterate over a list....</li>
+	<li>iterate over a list with a for loop....</li>
 	<li>(demo) list of integers</li>
 	<li>(demo) iterating over list of integers</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>FizzBuzz</h2>
+<p>
+Print integers 1 to 100, but replace multiples of 3 with "Fizz" and multiples of 5 with "Buzz" and multiples of both with "FizzBuzz"
+</p>
+{% highlight console %}
+joe@walsh~/projects/archived/fizzbuzz$ python fizzbuzz.py 
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+{% endhighlight %}
+<details>
+<ul>	
+	<li></li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>More fizz</h2>
+<p>
+It's a silly interview and code golf question from CodingHorror and http://golf.shinh.org/p.rb?FizzBuzz ...by the end, your output should look the same.
+</p>
+<details>
+</details>
+</section>
+
+<section>
+<h2>One way to do it:</h2>
+{% highlight console %}
+for n in range(1,100):
+	if n % 3 == 0 and n % 5 == 0:
+		print "fizzbuzz"
+	elif n % 3 == 0:
+		print "fizz"
+	elif n % 5 == 0:
+		print "buzz"
+	else:
+		print n
+{% endhighlight %}
+<details>
+<ul>
+	<li>Remember, no case statement!</li>
 </ul>
 </details>
 </section>
