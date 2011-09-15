@@ -10,7 +10,7 @@ body {
 	background: #1C1C1C;
 }
 
-code, .highlight, ul, ol, p, .slide-body {
+.highlight, ul, ol, p, .slide-body {
 	padding: 1em 0 0 2em;
 }
  
