@@ -25,7 +25,6 @@ title: Intro
 	<li>Running programs</li>
 	<li>Interactive shell</li>
 	<li>Some mild introspection</li>
-	<li>Everything is an object!</li>
 </ul>
 <details>
 </details>
@@ -498,8 +497,6 @@ for n in range(1,100):
  	<li>Strings</li>
  	<li>Lists and Tuples</li>
  	<li>Dictionaries</li>
- 	<li>Files</li>
-	<li>None</li>
  	<li>Booleans and Comparison Operators</li>
 </ul>
 <details>
@@ -701,74 +698,165 @@ re.sub("a.$", "ooooo", "foo bar baz") # regex
 	<li>Mutable, Sequence</li>
 	<li>Introduced by brackets... []</li>
 	<li>Each value is separated by commas</li>
-	<li>copying a list: http://henry.precheur.org/python/copy_list</li>
-	<li>enumerate()</li>
+	<li>Use list(a) to copy an array</li>
+</ul>
+<details>
+<ul>
+<li>Since arrays are mutable and passed by reference, be careful copying</li>
+<li>(demo) copying</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>List comprehensions</h2>
+<ul>
+	<li>A compact way of acting on every element in a list to return a new list
+		<ul>
+			<li>Think of it as a one line for in loop</li>
+			<li>If you're familiar with functional programming, it does some of the things that map, filter and lambda do in one construct</li>
+		</ul>
+	</li>
+	<li>General pattern: <em>expression</em> for <em>var</em> in <em>list</em></li> 
+	<li>...followed by an optional if which acts like a filter</li>
+	<li>...or even zero or more for's</li>
+</ul>
+{% highlight pycon %}
+>>> [s.strip() for s in ['   space ', 'man   ']]
+['space', 'man']
+>>> [s.strip() for s in ['   space ', 'man   '] if s.upper().strip() == 'MAN']
+['man']
+{% endhighlight %}
+<details>
+<pre>
+map maps a function to every element in an array/list
+filter filters an array/list using a function
+lambda allows for anonymous functions
+.... all of these actually exist in Python
+</pre>
+</details>
+</section>
+
+<h2>Another look</h2>
+{% highlight pycon %}
+>>> [s.strip() for s in ['   space ', 'man   '] if s.upper().strip() == 'MAN']
+['man']
+{% endhighlight %}
+<ul>
+	<li>The expression for... in list basically goes through each list item and runs the expression<ul>
+	<li>The if expression at the end only includes the element in the new list if it satisifes the condition</li> 
 </ul>
 <details>
 </details>
 </section>
 
 <section>
-<h2>List comprehensions</h2>
-<p>Lists</p>
-<ul>
-	<li></li>
-</ul>
-[x.upper() for x in ['bob', 'alice', 'carol', 'dave', 'eve' ] if len(x) == 3]
+<h2>A few quick excercises</h2>
+<p>Use a for loop that will iterate over a list and create a new list with the cubes of every value in the first list.  Use range to create the initial list.</p>
+<p>Use a for loop to go through a list of names.  Return a new list containing filtered list of three letter names all transformed to upper case  The list of names is as follows:  ['bob', 'alice', 'carol', 'dave', 'eve' ] </p>
+<p>
+Do both exercises above using list comprehensions.
+</p>
+<details>
+</details>
+</section>
+<section>
+
+<section>
+<h2>Solutions</h2>
+{% highlight pycon %}
+>>>[x.upper() for x in ['bob', 'alice', 'carol', 'dave', 'eve' ] if len(x) == 3]
 ['BOB', 'EVE']
 >>> [x**3 for x in range(5)]
 [0, 1, 8, 27, 64]
 >>> [x**3 for x in range(1,5)]
 [1, 8, 27, 64]
 >>> [x**3 for x in range(1,6)]
+{% endhighlight %}
 <details>
-<ul>
-	<li></li>
-</ul>
 </details>
 </section>
-
 <section>
+
 <h2>Common list functions</h2>
 <ul>
-	<li></li>
+	<li>range(5), range(1, 6) # returns list up to, but not including... <li>
+	<li>[1, 2, 4, 1, 5, 1].count(1) # returns number of occurrences of arg in list</li>
+	<li>li.append(4) # appends element to end of list</li>
+	<li>li.remove(4) # removes first occurrence of...</li>
+	<li>li.pop() # Returns and removes the last element</li>
+	<li>li.extend([3, 4]) # appends all items of one list to the other...</li>
+	<li>li.sort() # sorts list in place</li>
 </ul>
 <details>
-<ul>
-	<li></li>
-</ul>
 </details>
 </section>
 
 <section>
 <h2>Tuples</h2>
 <ul>
-	<li></li>
+	<li>Immutable, Sequence</li>
+	<li>Tuples are just comma delimted sequences: 1, 2 </li>
+	<li>They're usually wrapped in ()'s though: (1, 2), but it's the commas that are important!</li>
+	<li>A tuple can be unpacked into variables: a, b, c = t where t is a tuple with 3 values</li>
+	<li>Look familiar?  Multiple assignment is really just sequence unpacking.</li>
+	<li>You can think of tuples as immutable lists!</li>
 </ul>
 <details>
-<ul>
-	<li></li>
-</ul>
+<pre>
+(demo) can't append because immutable
+(demo) just commas
+(demo) packing unpacking
+(demo) for k, v in ...
+</pre>
 </details>
 </section>
 
 <section>
 <h2>Dictionary</h2>
 <ul>
-	<li></li>
+	<li>Mutable, Mapping</li>
+	<li>An unordered set of key-value pairs (really!  you absolutely cannot rely on the order of dictionary elements)</li>
+	<li>Called associative arrays or hashes in other languages</li>
+	<li>Keys must be unique and immutable (numbers and strings work great!)</li>
+	<li>Values can be anything!</li>
+	<li>Like JSON, curly braces and colons to represent dictionaries and name/value pairs</li>
 </ul>
 <details>
 <ul>
-	<li>items()</li>
-	<li>key doesn't exist</li>
+	<li>(demo) accessing elements</li>
 </ul>
 </details>
 </section>
 
 <section>
-<h2>Files</h2>
+<h2>Iterating through dictionaries</h2>
+{% highlight python %}
+>>> d = {'foo':'bar', 'baz':'qux'}
+>>> for e in d:
+...  print e
+... 
+foo
+baz
+?
+{% end %}
+<details>
 <ul>
- 	<li></li>
+	<li>(demo) regular for loop goes through keys</li>
+	<li>(demo) for loop using k, v to get error</li>
+	<li>(demo) items()</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>There's a bit more to it</h2>
+<ul>
+	<li>And if a key doesn't exist...</li>
+	<li>d.get('bob') # no exception, get None instead</li>
+	<li>d = dict(foo = "bar", baz = "qux") # constructor style rather than dict literal</li>
+	<li>d.keys() # returns a list of the dict's keys</li>
+	<li>d.items() # returns a list of tuples of the name value pairs</li>
 </ul>
 </section>
 
@@ -815,17 +903,6 @@ re.sub("a.$", "ooooo", "foo bar baz") # regex
 </section>
 
 <section>
-<h2>Conventions and Documentation</h2>
-<p>
-</p>
-<p>
-ternary operator
-</p>
-<details>
-</details>
-</section>
-
-<section>
 <h2>Using modules</h2>
 <ul>
 	<li>A module is a file with Python code in it</li>
@@ -849,9 +926,8 @@ ternary operator
 <p>Use urllib and json to get tweets about Python using the twitter search API:
 </p>
 <ul>
-	<li>write the 10 latest tweets about Python</li> 
+	<li>print the 10 latest tweets about Python</li> 
 	<li>by users that have a handle that starts with 'j'</li>
-	<li>to a file on your filesystem</li>
 	<li>while remembering to include exception handling</li>
 </ul>
 <br />
@@ -872,7 +948,9 @@ ternary operator
 >>> import urllib
 >>> import json
 >>> # should probably look for IOError here...
->>> f = urllib.urlopen('http://search.twitter.com/search.json?q=%40python')
+>>> f = urllib.urlopen(\
+...  'http://search.twitter.com/search.json?q=%40python')
+...
 >>> d = json.loads(f.read())
 >>> d['results'][0]['text']
 {% endhighlight %}
