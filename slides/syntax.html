@@ -122,7 +122,7 @@ type(sys), type(5), li = [], type(li), dir(li), type(li.append),
 </ul>
 <details>
 <ul>
-	<li>Leading whitespace is meaningful to the program structure!<li>
+	<li>Leading whitespace is meaningful to the program structure!</li>
 	<li>You can use tabs or spaces, but not both.  The convention is to use 4 spaces, though any number is possible as long as it's consistent (demo if with one space, then two).  I use tabs, which is bad.</li>
 	<li>blocks, or groups of statements are specified by indentation level.</li>
 	<li>lines separate statements, unless you explicitly create a continuation using a backslash, but must indent next (demo).</li>
@@ -163,8 +163,7 @@ type(sys), type(5), li = [], type(li), dir(li), type(li.append),
 <details>
 <ul>
 	<li>(demo)+ - *  / all work as you'd expect.  whitespace separating tokens is not significant.</li>
-	<li>(demo) also % (modulo), 5**2 for exponents</li>
-	<li>(demo) operations on two integers yield integers 5 / 2</li>
+	<li>(demo) also % (modulo), 5**2 for exponents, bitwise ops 6&amp;2, 2|4, 8&lt;&lt;1 </li>
 	<li>(demo) use = to assign variables</li>
 	<li>(demo) a = b = c = 2</li>
 	<li>(demo) (a, b, c) = (1, 2, 3) ... these are actually tuples, we'll talk about these later</li>
@@ -284,7 +283,6 @@ b --->[1, 2, 3]
 <ul>
 	<li>elif and else are optional; there can be arbitrary number of elifs</li>
 	<li>No switch-case!  Use many elif's</li>
-
 </ul>
 <details>
 <ul>
@@ -447,9 +445,7 @@ Exception
 
 <section>
 <h2>FizzBuzz</h2>
-<p>
-Print integers 1 to 100, but replace multiples of 3 with "Fizz" and multiples of 5 with "Buzz" and multiples of both with "FizzBuzz"
-</p>
+<p> Print integers 1 to 100, but replace multiples of 3 with "Fizz" and multiples of 5 with "Buzz" and multiples of both with "FizzBuzz" </p>
 {% highlight console %}
 joe@walsh~/projects/archived/fizzbuzz$ python fizzbuzz.py 
 1
@@ -469,19 +465,7 @@ fizz
 fizzbuzz
 {% endhighlight %}
 <details>
-<ul>	
-	<li></li>
-</ul>
-</details>
-</section>
-
-<section>
-<h2>More fizz</h2>
-<ul>
-<li>It's a silly interview and code golf question from CodingHorror and http://golf.shinh.org/p.rb?FizzBuzz </li>
-<li>Your output should look the same as the previous slide.</li>
-</ul>
-<details>
+<b>ACTIVITY TIME!</b>
 </details>
 </section>
 
@@ -508,23 +492,38 @@ for n in range(1,100):
 <section>
 <h2>Data types</h2>
 <ul>
-	<li>Mutability (and References)</li>
+	<li>Types of types (Yeah, really)</li>
+	<li>Mutability</li>
 	<li>Numbers</li>
-	<li>Booleans</li>
  	<li>Strings</li>
- 	<li>None</li>
- 	<li>Lists</li>
- 	<li>Tuples</li>
+ 	<li>Lists and Tuples</li>
  	<li>Dictionaries</li>
  	<li>Files</li>
+	<li>None</li>
+ 	<li>Booleans and Comparison Operators</li>
 </ul>
 <details>
 </details>
 </section>
 
 <section>
-<h2>Accept the things you cannot change...</h2>
-<p>Some types in Python are not mutable! (Remember, values have types).</p>
+<h2>Types of types (Yeah, really)</h2>
+<ul>
+	<li>Numerics</li>
+	<li>Sequences - can be indexed into using numerical keys</li>
+	<li>Mappings - can be indexed into using arbitrary keys</li>
+ 	<li>Files - a sequence of bytes</li>
+ 	<li>Classes</li>
+ 	<li>Instances</li>
+ 	<li>Exceptions</li>
+</ul>
+<details>
+</details>
+</section>
+
+<section>
+<h2><s>Accept</s> Recreate the things you cannot change...</h2>
+<p>Some types in Python are not mutable, like strings and numbers! (Remember, values have types).</p>
 {% highlight pycon %}
 >>> a
 'foo'
@@ -540,7 +539,14 @@ for n in range(1,100):
 >>> a
 'foo bar'
 {% endhighlight %}
-<p>Compare that to what happened with lists</p>
+<p>A new string is actually being made when you do concatenation; you don't get a modified version of the old string.</p>
+<details>
+</details>
+</section>
+
+<section>
+<h2>Change the things you can (by reference)</h2>
+<p>Compare that to what happens with mutable data types like lists</p>
 {% highlight pycon %}
 >>> a = [1, 2, 3]
 >>> b = a
@@ -558,11 +564,133 @@ for n in range(1,100):
 </section>
 
 <section>
-<h2>Dictionaries</h2>
+<h2>Numbers</h2>
 <ul>
-<li>items()</li>
-<li>key doesn't exist</li>
+	<li>Immutable, Numeric</li>
+	<li>int --&gt; 5</li>
+	<li>long --&gt; 5.5555555</li>
+	<li>float --&gt; 5.55</li>
+	<li>complex --&gt; 5 + 5j</li>
+	<li>Types widen int --&gt; long --&gt; float --&gt; complex</li>
+	<li>Construtors: int(), long(), float(), and complex()</li>
 </ul>
+<details>
+<ul>
+	<li>'Regular' numbers get int type, numbers with a decimal point are floats</li>
+	<li>(demo) floats and ints using type()</li>
+	<li>operands are widened to accommate wider type when erforming operations</li>
+	<li>(demo) operations on two integers yield integers 5 / 2</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>About sequences...</h2>
+<ul>
+	<li>Strings, lists, tuples</li>
+	<li>Index into sequences by using brackets [i]</li>
+	<li>Negative indexes start from the right</li>
+	<li>A subset of a sequence from index n <em>up to</em> m can be sliced out using [n:m]</li>
+</ul>
+<details>
+<pre>
+questions!
+>>> "nerds"[0] #first element,  >>> "nerds"[4] #last element (n - 1)
+>>> "nerds"[5] #IndexError 
+>>> "nerds"[-1] #from the right,  >>> "nerds"[-2] #again
+>>> "nerds"[0:2] #slices
+>>> "nerds"[3:1] #nothing to slice
+>>> "nerds"[3:-1] #something to slice even though negative
+>>> "nerds"[3:] #no end index,  >>> "nerds"[:2] #no start index
+</pre>
+</details>
+</section>
+
+<section>
+<h2>Strings</h2>
+<ul>
+	<li>Immutable, Sequence</li>
+	<li>String literals delimted with
+		<ul>
+			<li>'single quotes'</li>
+			<li>"double quotes"</li>
+			<li>"""triple double quotes</br>
+					span lines!"""</li>
+		</ul>
+	</li>
+	<li>Use backslash to escape quotes, doublequotes and other backslashes</li>
+	<li>\n is a new line (line feed), \r is a carriage return</li>
+	<li>unicode strings are prefixed by u... u"snowman"</li>
+</ul>
+<details>
+<ul>
+	<li>(demo) note that you don't have to escape when using mixed quoting</li>
+	<li>(demo) same as above... don't have to escape double quotes in triple double quotes  </li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>String formatting / interpolation</h2>
+<ul>
+	<li>String and unicode objects can be formatted using the % operator
+		<ul>
+			<li>String interpolation is a way of substituting values into a format string</li>
+			<li><em>format</em> % <em>value(s)</em></li>
+		</ul>
+	</li>
+</ul>
+{% highlight python %}
+>>> a = "milk"
+>>> b = "cookies"
+>>> s = "I like %s and %s" % (a, b)
+>>> s
+'I like milk and cookies'
+{% endhighlight %}
+<details>
+</details>
+</section>
+
+<section>
+<h2>% what?</h2>
+<ul>
+	<li>Format strings use %<em>character</em> as placeholder for values</li>
+	<li>These are called conversion specifiers</li>
+	<li>Some available conversion specifiers include:
+		<ul>
+			<li>%d - integer</li>	
+			<li>%f - float</li>	
+			<li>%s - string</li>	
+			<li>%c - character</li>	
+		</ul>
+	</li>
+</ul>
+<details>
+<ul>
+	<li>An exception will be thrown if the type does not match the type specified in the format</li>
+	<li>"%i will throw an exception" % "foo"</li>
+	<li>There are more complex conversion specifiers; these are the most common</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>Common string functions and methods</h2>
+<p>String methods and functions can be used on both variables and string literals:</p>
+{% highlight python %}
+a = "foo"
+a.upper()
+"foo".upper()
+{% endhighlight %}
+<p>Common functions and methods:</p>
+{% highlight python %}
+len("foo") # length of string
+re.sub("a.$", "ooooo", "foo bar baz") # regex
+"  foo ".strip() # strip surrounding whitespace
+"foo".startswith('f') # true if string starts with x
+"foo".startswith('f') # true if string starts with x
+"foo bar baz".split(' ') # returns list of substrings
+{% endhighlight %}
 <details>
 </details>
 </section>
@@ -570,12 +698,118 @@ for n in range(1,100):
 <section>
 <h2>Lists</h2>
 <ul>
-<li>copying a list: http://henry.precheur.org/python/copy_list</li>
-<li>enumerate()</li>
-<li>List Comprehensions</li>
-<li>Copying lists</li>
-<li>bounded</li>
+	<li>Mutable, Sequence</li>
+	<li>Introduced by brackets... []</li>
+	<li>Each value is separated by commas</li>
+	<li>copying a list: http://henry.precheur.org/python/copy_list</li>
+	<li>enumerate()</li>
 </ul>
+<details>
+</details>
+</section>
+
+<section>
+<h2>List comprehensions</h2>
+<p>Lists</p>
+<ul>
+	<li></li>
+</ul>
+[x.upper() for x in ['bob', 'alice', 'carol', 'dave', 'eve' ] if len(x) == 3]
+['BOB', 'EVE']
+>>> [x**3 for x in range(5)]
+[0, 1, 8, 27, 64]
+>>> [x**3 for x in range(1,5)]
+[1, 8, 27, 64]
+>>> [x**3 for x in range(1,6)]
+<details>
+<ul>
+	<li></li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>Common list functions</h2>
+<ul>
+	<li></li>
+</ul>
+<details>
+<ul>
+	<li></li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>Tuples</h2>
+<ul>
+	<li></li>
+</ul>
+<details>
+<ul>
+	<li></li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>Dictionary</h2>
+<ul>
+	<li></li>
+</ul>
+<details>
+<ul>
+	<li>items()</li>
+	<li>key doesn't exist</li>
+</ul>
+</details>
+</section>
+
+<section>
+<h2>Files</h2>
+<ul>
+ 	<li></li>
+</ul>
+</section>
+
+<section>
+<h2>Booleans and comparison operators</h2>
+<ul>
+	<li>Of course, True and False</li>
+	<li>Usual comparison operators, &gt;, &lt;, &gt;=, &lt;=, ==, &lt;&gt;, and !=</li>
+	<li>Comparison opereators can be chained: 7 &gt; 5 &gt; 3</li>
+	<li>and and or returns one of their operands! 
+		<ul>
+			<li>Short circuit evaluation</li>
+			<li>and returns the left hand operator if it's False (it already knows outcome, so just return), otherwise, the right hand operator is returned</li>
+			<li>or returns the left hand operator if it's True</li>
+		</ul>
+	</li>
+</ul>
+<details>
+<pre>
+7 >5 > 2 # chained
+>>> 0 and 25 # lef hand op is False and "and"
+>>> 25 and 0
+>>> 25 and 35
+>>> 25 and 35 and 45
+# note that these evaluate to True or False
+(8 > 2) and "foo" or "bar" # trick for ternary, but don't do it...
+</pre>
+</details>
+</section>
+
+<section>
+<h2>What's considered False?</h2>
+<ul>
+	<li>False (obv!)</li>
+	<li>None</li>
+	<li>Any empty sequence, such as '', () or [], or mapping, such as {}</li>
+	<li>0 for any numeric type</li>
+	<li>User defined classes that define a __nonzero__() or __len__() method that returns something False-y</li>
+</ul>
+<br />
+<p>Everything else is True</p>
 <details>
 </details>
 </section>
@@ -583,15 +817,6 @@ for n in range(1,100):
 <section>
 <h2>Conventions and Documentation</h2>
 <p>
-{% highlight pycon %}
-And and or
->>> 'a' and 'b'         
-'b'
->>> '' and 'b'          
-''
->>> 'a' and 'b' and 'c' 
-'c'
-{% endhighlight %}
 </p>
 <p>
 ternary operator
@@ -601,30 +826,54 @@ ternary operator
 </section>
 
 <section>
-<h2>exercises</h2>
+<h2>Using modules</h2>
 <ul>
-	<li>fizzbuzz using range, foreach, if else</li>
-	<li>sum #'s using foreach, then using arg, then maybe file io?, then file, then exception handling</li>
-	<li>try using httplib and json for non reg twitter api http://api.twitter.com/1/statuses/public_timeline.json?count=3&include_entities=true</li>
-	<li>twitter search http://search.twitter.com/search.json?q=%40twitterapi</li>
-	<li>https://dev.twitter.com/docs/using-search</li>
+	<li>A module is a file with Python code in it</li>
+	<li>Python has many built-in modules - help('modules')</li>
+	<li>You can bring in all of the definitions in a module by using the import statement </li>
+	<li>import <em>modulename</em> (no quotes around the module name)</li>
+	<li>Try importing the following modules:<ul>
+		<li>sys</li>
+		<li>os</li>
+		<li>json</li>
+		<li>urllib</li>
+	</ul>
+	<li>What do these modules do?  What are some methods and attributes that are in them?</li>
 </ul>
+<details>
+</details>
+</section>
 
+<section>
+<h2>Putting it all together</h2>
+<p>Use urllib and json to get tweets about Python using the twitter search API:
+</p>
+<ul>
+	<li>write the 10 latest tweets about Python</li> 
+	<li>by users that have a handle that starts with 'j'</li>
+	<li>to a file on your filesystem</li>
+	<li>while remembering to include exception handling</li>
+</ul>
+<br />
+<p>You'll need a couple of bits of information:
+</p>
+<ul>
+	<li>Twitter search api docs: <br />https://dev.twitter.com/docs/using-search</li>
+	<li>The url to perform the search: <br />http://search.twitter.com/search.json?q=%40python</li>
+</ul>
+<details>
+<b>ACTIVITY TIME</b>
+</details>
+</section>
+
+<section>
+<h2>A bit of help</h2>
 {% highlight python %}
 >>> import urllib
 >>> import json
+>>> # should probably look for IOError here...
 >>> f = urllib.urlopen('http://search.twitter.com/search.json?q=%40python')
 >>> d = json.loads(f.read())
 >>> d['results'][0]['text']
 {% endhighlight %}
-
-	{% highlight python %}
-def foo():
-	bar = 0
-	d = {'asdf':'fdsa'}
-	for k, v in d:
-		print "%s" % k
-	{% endhighlight %}
-<details>
-</details>
 </section>

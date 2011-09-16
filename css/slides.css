@@ -11,7 +11,7 @@ body {
 }
 
 .highlight, ul, ol, p, .slide-body {
-	padding: 1em 0 0 2em;
+	padding: 0 0 0 2em;
 }
 
 .highlight {
@@ -44,6 +44,7 @@ h2 {
 	margin: 1em 0 0 0;
 	font-size: 1.5;
 	text-align: center;
+	padding-bottom: 0.5em;
 }
 q {
 	margin: 2em 0em 0em 5em;
@@ -115,7 +116,7 @@ body.loaded {display: block}
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
 .highlight .go { color: #808080 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gp { color: #0000e9; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
 .highlight .gt { color: #0040D0 } /* Generic.Traceback */

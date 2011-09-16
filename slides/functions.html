@@ -3,70 +3,226 @@ layout: slides
 title: Functions
 ---
 <section>
-    <h1>Functions</h1>
-    <footer>Intro to Python</footer>
+<h1>Functions</h1>
+<footer>Intro to Python</footer>
 </section>
 
 <section>
-h2.  exercises
-* fib (recursive)
-* fizzbuzz to function, function w/ kw args
-* make_adder function using scope / closure and functions as first class citizens
-* counties list comprehension
+<h2>Defining functions</h2>
+{% highlight pycon %}
+>>> def add_hello(who):
+...  return "hello %s" % (who)
+{% endhighlight %}
+<ul>
+	<li>Use def to start function definition</li>
+	<li>Parameters are surrounded by parentheses</li>
+	<li>If you want to return a value, you must explicitly do so using <em>return</em></li>
+	<li>Function params can be given default values...</li>
+</ul>
+{% highlight pycon %}
+>>> def add_hello(who="guido"):
+...  return "hello %s" % (who)
+{% endhighlight %}
+<ul>
+	<li>Can call with no paramaters now!</li>
+</ul>
+</section>
 
+<section>
+<h2>Calling functions</h2>
+<p>Functions can be called with positional arguments</p>
 {% highlight python %}
->>> def make_adder(n):
-...  def add(x):
-...   return n + x
-...  return add
+def f(a, b, c):
+ print "%s %s %s" % (a, b, c)
+f("by", "it's", "toe")
+{% endhighlight %}
+<p>Functions can be called with keyword arguments (param=value) in any order, but keywards must be the formal parameter names</p>
+{% highlight python %}
+f(c="toe", a="by", b="it's")
+{% endhighlight %}
+<p>Both can be mixed as long as positional comes before keyword arguments</p>
+{% highlight python %}
+f("by", c="toe", b="it's")
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Factorial</h2>
+<p>Implement factorial... n! = n * (n-1)! for n &gt; 0</p>
+<ul>
+	<li>0! = 1</li>
+	<li>1! = 1</li>
+	<li>2! = 2</li>
+	<li>3! = 6</li>
+	<li>4! = 24</li>
+</ul>
+</section>
+
+<section>
+<h2>Functions are first class objects</h2>
+<p>Functions can be passed around and assigned just like any other value:</p>
+{% highlight pycon %}
+>>> def add_hello(who):
+...  return "hello %s" % (who)
+>>> type(add_hello)
+?
+>>> f = add_hello
+>>> f
+?
+>>> f = add_hello("Bob")
+>>> f
+?
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Scope, functions in functions</h2>
+<p>You can define a function in a function</p>
+{% highlight pycon %}
+>>> def gimme_func():
+...   x = []
+...   def add_to_list():
+...    x.append("a")
+...    return x
+...   return add_to_list
 ... 
+>>> f = gimme_func()
+>>> f()
+['a']
+>>> f()
+['a', 'a']
+{% endhighlight %}
+<p>add_to_list retains access to the variables that were in scope when it was defined, even after gimme_func already returned.  This is called a closure.</p>
+</section>
+
+<section>
+<h2>make_adder(x)</h2>
+<p>Implement a function, make_adder, that accepts one numeric parameter, x.  make_adder will return a function that adds x to whatever is passed in to that function  </p>
+{% highlight pycon %}
 >>> add_three = make_adder(3)
 >>> add_twenty = make_adder(20)
 >>> add_three(5)
 8
 >>> add_twenty(5)
 25
->>> 
+{% endhighlight %}
+</section>
 
+<section>
+<h2>make_adder(x) solution</h2>
+{% highlight pycon %}
+>>> def make_adder(n):
+...  def add(x):
+...   return n + x
+...  return add
+... 
+{% endhighlight %}
+</section>
 
+<section>
+<h2>Arbitrary # of parameters</h2>
+<p>Arbitrary number of positional parameters will be wrapped in a tuple when using *args</p>
+{% highlight pycon %}
+>>> def f(*args):
+...  print type(args)
+>>> f("foo", "bar")
+<type 'tuple'>
+{% endhighlight %}
+<p>Arbitrary number of keyword parameters will be wrapped in a dict when using **kwargs</p>
+{% highlight pycon %}
+>>> def f(**kwargs):
+...  print type(kwargs)
+>>> f(a="foo", b="bar")
+<type 'dict'>
+{% endhighlight %}
+<p>Can be combined!<p>
+{% highlight pycon %}
+>>> def f(a, b, *args, **kwargs):
+...
+{% endhighlight %}
+</section>
 
-
-
+<section>
+<h2>Food dictionary</h2>
+{% highlight python %}
 food = [
-    {'name':'carrot', 'food_group':'vegetable', 'tasty':True, 'color':'orange'},
-    {'name':'eggplant', 'food_group':'vegetable', 'tasty':False, 'color':'purple'},
-    {'name':'kale', 'food_group':'vegetable', 'tasty':True, 'color':'green'},
-    {'name':'wheatgrass', 'food_group':'vegetable', 'tasty':False, 'color':'green'},
-    {'name':'kohlrabi', 'food_group':'vegetable', 'tasty':True, 'color':'green'},
-    {'name':'orange', 'food_group':'fruit', 'tasty':True, 'color':'orange'},
-    {'name':'grapes', 'food_group':'fruit', 'tasty':False, 'color':'purple'},
-    {'name':'kiwi', 'food_group':'fruit', 'tasty':True, 'color':'green'},
-    {'name':'pistachio ice cream', 'food_group':'dairy', 'tasty':True, 'color':'green'}
+    {'name':'carrot', 'food_group':'vegetable', \
+	'tasty':True, 'color':'orange'},
+    {'name':'eggplant', 'food_group':'vegetable', \
+	'tasty':False, 'color':'purple'},
+    {'name':'kale', 'food_group':'vegetable', \
+	'tasty':True, 'color':'green'},
+    {'name':'wheatgrass', 'food_group':'vegetable', \
+	'tasty':False, 'color':'green'},
+    {'name':'kohlrabi', 'food_group':'vegetable', \
+	'tasty':True, 'color':'green'},
+    {'name':'orange', 'food_group':'fruit', \
+	'tasty':True, 'color':'orange'},
+    {'name':'grapes', 'food_group':'fruit', \
+	'tasty':False, 'color':'purple'},
+    {'name':'kiwi', 'food_group':'fruit', \
+	'tasty':True, 'color':'green'},
+    {'name':'pistachio ice cream', 'food_group':'dairy', \
+	'tasty':True, 'color':'green'}
 ]
+{% endhighlight %}
+</section>
 
-def filter_1(list_of_dicts, **kwargs):
-    filtered_list = []
-    for item in list_of_dicts:
-        add_to_list = True
-        for k, v in kwargs.items():
-            if item[k] != v:
-                add_to_list = False
-                break
-        if add_to_list:
-            filtered_list.append(item)
-    return filtered_list
+<section>
+<h2>Filter API</h2>
+{% highlight python %}
+print filter_1(food, color='green', food_group='vegetable')
 
-def filter_2(list_of_dicts, **kwargs):
-    """iteratively filter list of dicts for each kwarg"""
-    for k, v in kwargs.items():
-        list_of_dicts = [f for f in list_of_dicts if f[k] == v]
-    return list_of_dicts
+[{'color': 'green', 'food_group': 'vegetable', \
+	'tasty': True, 'name': 'kale'}, 
+	{'color': 'green', 'food_group': 'vegetable', \
+	'tasty': False, 'name': 'wheatgrass'}, 
+	{'color': 'green', 'food_group': \
+	k'vegetable', 'tasty': True, 'name': 'kohlrabi'}]
 
 {% endhighlight %}
+</section>
 
-<details>
-* foo
-* bar
+<section>
+<h2>Using for loops</h2>
+{% highlight python %}
+def filter_1(list_of_dicts, **kwargs):
+	filtered_list = []
+	for item in list_of_dicts:
+		add_to_list = True
+		for k, v in kwargs.items():
+			if item[k] != v:
+				add_to_list = False
+				break
+		if add_to_list:
+			filtered_list.append(item)
+	return filtered_list
+{% endhighlight %}
+</section>
 
-</details>
+<section>
+<h2>Using for loops and list comprehensions</h2>
+{% highlight python %}
+def filter_2(list_of_dicts, **kwargs):
+	"""iteratively filter list for each kwarg"""
+	for k, v in kwargs.items():
+		list_of_dicts = \
+			[f for f in list_of_dicts if f[k] == v]
+	return list_of_dicts
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Using list comprehensions</h2>
+{% highlight python %}
+def filter_3(list_of_dicts, **kwargs):
+	"""[k for k,v in kwargs.iteritems() \
+	if list_of_dicts[0][k] == v] 
+    to build a list where all keys match, while outer 
+	comprehension is to iterate across all dicts
+	"""
+	return [d for d in list_of_dicts \
+		if len([k for k,v in kwargs.iteritems() \
+		if d[k] == v]) == len(kwargs)]
+{% endhighlight %}
 </section>
