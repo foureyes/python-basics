@@ -723,7 +723,8 @@ re.sub("a.$", "ooooo", "foo bar baz") # regex
 {% highlight pycon %}
 >>> [s.strip() for s in ['   space ', 'man   ']]
 ['space', 'man']
->>> [s.strip() for s in ['   space ', 'man   '] if s.upper().strip() == 'MAN']
+>>> [s.strip() for s in ['   space ', 'man   '] \
+...  if s.upper().strip() == 'MAN']
 ['man']
 {% endhighlight %}
 <details>
@@ -739,7 +740,8 @@ lambda allows for anonymous functions
 <section>
 <h2>Another look</h2>
 {% highlight pycon %}
->>> [s.strip() for s in ['   space ', 'man   '] if s.upper().strip() == 'MAN']
+>>> [s.strip() for s in ['   space ', 'man   '] \
+...  if s.upper().strip() == 'MAN']
 ['man']
 {% endhighlight %}
 <ul>
