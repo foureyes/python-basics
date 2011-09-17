@@ -1,0 +1,18 @@
+Slides for Intro to Python workshop at PyGotham 2011.
+=====
+
+Covers:
+-----
+* Intro to language and setting up
+* Syntax and control structures
+* Functions
+
+Pages:
+-----
+* index.html - links to 3 slide decks
+* slides/*.html - slide decks for each topic covered
+
+Built With:
+-----
+* http://paulrouget.com/dzslides/
+* https://github.com/mojombo/jekyll

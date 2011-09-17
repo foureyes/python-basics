@@ -1,0 +1,82 @@
+---
+layout: slides
+title: Intro
+---
+<section>
+	<h1>Mish Mash</h1>
+	<footer>Intro to Python</footer>
+</section>
+
+<section>
+<h2>Fact</h2>
+{% highlight pycon %}
+>>> def fact(n):
+...  if n == 0:
+...   return 1
+...  else: return n * fact(n - 1)
+... 
+>>> fact(1)
+1
+>>> fact(0)
+1
+>>> fact(3)
+6
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Modules</h2>
+{% highlight python %}
+>>> import m
+>>> m.hello_module()
+hi, i'm in yr modulez
+>>> import m as my_crazy_module_name
+>>> my_crazy_module_name.hello_module()
+hi, i'm in yr modulez
+>>> from m import hello_module
+>>> hello_module()
+hi, i'm in yr modulez
+{% endhighlight %}
+</section>
+
+<section>
+<h2>PYTHON_PATH</h2>
+{% highlight python %}
+>>> import sys
+>>> sys.path
+>>> sys.modules
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Running a module</h2>
+{% highlight python %}
+if __name__ == “__main__”:
+	do_your_stuff()
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Packages</h2>
+<ul>
+	<li>A directory containing __init__.py</li>
+	<li>Code can go in __init__.py</li>
+	<li>Other modules can be imported under the package directory</li>
+</ul>
+
+{% highlight python %}
+import package_name
+import package_name.module_name
+from package_name import module_name
+{% endhighlight %}
+</section>
+
+<section>
+<h2>Other Stuff</h2>
+<ul>
+	<li>easy_install / pip</li>
+	<li>Python package index</li>
+	<li>site-packages</li>
+	<li>virtualenv</li>
+</ul>
+</section>
